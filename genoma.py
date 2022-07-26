@@ -1,4 +1,3 @@
-import matplotlib.pyplot as plt
 
 entrada = open("human.fasta").read()
 saida = open("human.html", "w")
@@ -14,7 +13,6 @@ for i in atcg:
 entrada = entrada.replace("\n","")
 
 for k in range(len(entrada)-1):
-    # cont[ entrada[k] + entrada[k+1] ] += 1
     cont[ entrada[k+1]+entrada[k] ] += 1
 
 # print( cont )
