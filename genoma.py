@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 
-entrada = open("bacteria.fasta").read()
-saida = open("bacteria.html", "w")
+entrada = open("human.fasta").read()
+saida = open("human.html", "w")
 
 atcg = ['A', 'T', 'C', 'G']
 
@@ -13,7 +13,24 @@ for i in atcg:
 
 entrada = entrada.replace("\n","")
 
-# for k in range(len(entrada)-1):
-    # cont[entrada[k]+entrada[k+1]] += 1
+for k in range(len(entrada)-1):
+    # cont[ entrada[k] + entrada[k+1] ] += 1
+    cont[ entrada[k+1]+entrada[k] ] += 1
 
-print( cont )
+# print( cont )
+
+## HTML
+i = 1
+for k in cont:
+    transparencia = cont[k]/max(cont.values())
+    saida.write("<div style='width:100px;\
+                border: 1px solid #111; color:#fff;\
+                height:100px; float:left;\
+                background-color:rgba(0,0,200,\
+                "+str(transparencia)+"')>"+k+"</div>")
+
+    if i%4 == 0:
+        saida.write("<div style='clear:both'></div>")
+
+    i += 1
+saida.close()
